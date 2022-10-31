@@ -2,75 +2,206 @@
   <head>
     
     <style>
-      
-      body {
-  padding: 1rem;
+      @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;600&display=swap");
+
+/* CSS reset */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
-p {
-  margin: 0 0 2rem;
+* {
+  margin: 0;
 }
 
-/* customized slider */
-.swiffy-slider {
-  width: 1176px;
+html,
+body {
+  /* height: 100%; */
 }
 
-@media screen and (max-width: 767px) {
-  .swiffy-slider {
-  width: auto;
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
 }
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
 }
-.slider-indicators {
-  margin-bottom: -35px;
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
 }
-.slider-indicators > * {
-  color: #fff;
-  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
-  font-size: 14px;
-  line-height: 1.4;
+
+/* general styling */
+
+:root {
+  /* Primary */
+
+  --Red: hsl(0, 78%, 62%);
+  --Cyan: hsl(180, 62%, 55%);
+  --Orange: hsl(34, 97%, 64%);
+  --Blue: hsl(212, 86%, 64%);
+
+  /* Neutral */
+
+  --Very-Dark-Blue: hsl(234, 12%, 34%);
+  --Grayish-Blue: hsl(229, 6%, 66%);
+  --Very-Light-Gray: hsl(0, 0%, 98%);
 }
-@media screen and (max-width: 767px) {
-  .slider-indicators > * {
-    font-size: 0px;
+
+body {
+  display: flex;
+  justify-content: center;
+  font-family: "Poppins", sans-serif;
+  font-size: 0.9rem;
+  color: var(--Very-Dark-Blue);
+  background-color: var(--Very-Light-Gray);
+}
+
+section {
+  max-width: 25rem;
+  margin-top: 4rem;
+}
+
+.feature {
+  position: relative;
+  max-width: 21rem;
+  height: 15rem;
+  margin: 2rem auto;
+  padding: 2em;
+  border-radius: 0.75em;
+  box-shadow: 5px 5px 20px rgba(0 0 0/0.15);
+  text-align: left;
+  transition: transform 200ms ease-in;
+}
+
+.feature:hover {
+  transform: scale(1.03);
+}
+
+.feature__desc {
+  margin-top: 0.5em;
+  color: var(--Grayish-Blue);
+}
+
+.feature__img {
+  position: absolute;
+  bottom: 10%;
+  right: 10%;
+}
+
+/* separate styling */
+
+.section__title {
+  margin: 0 auto;
+  max-width: 90%;
+  font-size: 1.65rem;
+  font-weight: 300;
+  line-height: 1.5em;
+  text-align: center;
+}
+
+.section__title span {
+  font-weight: 700;
+}
+
+.section__desc {
+  max-width: 32ch;
+  margin: 1rem auto 3rem;
+  color: var(--Grayish-Blue);
+  font-size: 1rem;
+  text-align: center;
+}
+
+.feature-one {
+  border-top: 5px solid var(--Cyan);
+}
+
+.feature-two {
+  border-top: 5px solid var(--Red);
+}
+
+.feature-three {
+  border-top: 5px solid var(--Orange);
+}
+
+.feature-four {
+  border-top: 5px solid var(--Blue);
+}
+
+/* attribution styling */
+
+footer {
+  position: absolute;
+  top: 0;
+}
+
+.attribution {
+  color: var(--Very-Dark-Blue);
+  opacity: 0.7;
+}
+
+.attribution a {
+  color: var(--Blue);
+  text-decoration: underline;
+}
+
+.attribution a:hover {
+  color: var(--Cyan);
+}
+
+/* media queries */
+
+@media (min-width: 1000px) {
+  body {
+    align-items: center;
+    min-height: 100vh;
+  }
+
+  section {
+    max-width: 200rem;
+  }
+
+  .section__title {
+    margin: 0 auto;
+    max-width: 40%;
+    font-size: 2rem;
+  }
+
+  .section__desc {
+    max-width: 55ch;
+    margin: 1rem auto 1rem;
+  }
+
+  .features {
+    display: flex;
+    gap: 2rem;
+  }
+
+  .feature-one {
+    margin: auto 0;
+  }
+
+  .feature-four {
+    margin: auto 0;
   }
 }
-.slider-indicators-square.slider-indicators > *,
-.slider-indicators-square .slider-indicators > * {
-  width: 22px;
-  height: 21px;
-  padding: 1px 0 0 0;
-  background-color: #000;
-  opacity: 1;
-}
-@media screen and (max-width: 767px) {
-  .slider-indicators-square.slider-indicators > *,
-  .slider-indicators-square .slider-indicators > * {
-    background: #ccc;
-    border-radius: 100%;
-    width: 0.5rem;
-    height: 0.5rem;
-    overflow: hidden;
-    border: 1px solid transparent;
-    margin: 0 3px;
-    margin-bottom: 20px;
-    padding: 0;
-  }
-}
 
-.slider-indicators > .active {
-  opacity: 1;
-  transition: background-color 0.3s ease;
-}
-
-.slider-indicators.archSlide > .active {
-  background-color: #2346aa;
-}
-
-.slider-indicators.techSlide > .active {
-  background-color: #FDE100;
-  color: #000;
-}
       
     </style>
     
@@ -78,26 +209,48 @@ p {
   
   <body>
     
-    <div class="swiffy-slider slider-nav-arrow slider-nav-sm slider-nav-autoplay slider-nav-autopause slider-indicators-square slider-indicators-sm" data-slider-nav-autoplay-interval="4500">
-  <ul class="slider-container">
-    <li><img src="https://via.placeholder.com/1176x270/b2d8d8/b2d8d8?text=S"></li>
-    <li><img src="https://via.placeholder.com/1176x270/66b2b2/66b2b2?text=L"></li>
-    <li><img src="https://via.placeholder.com/1176x270/008080/008080?text=I"></li>
-    <li><img src="https://via.placeholder.com/1176x270/006666/006666?text=D"></li>
-    <li><img src="https://via.placeholder.com/1176x270/004c4c/004c4c?text=E"></li>
-  </ul>
+<main>
+  <section class="">
+    <h1 class="section__title">
+      Reliable, efficient delivery
+      <span>Powered by Technology</span>
+    </h1>
+    <p class="section__desc">Our Artificial Intelligence powered tools use millions of project data points to ensure
+      that your project is successful</p>
+    <div class="features">
+      <div class="feature feature-one">
+        <h2 class="feature__title">Supervisor</h2>
+        <p class="feature__desc">Monitors activity to identify project roadblocks</p>
+        <img class="feature__img" src="https://kellychi22.github.io/frontend-mentor-solutions/10-four-card-feature-section/images/icon-supervisor.svg" alt="">
+      </div>
+      <div class="wrapper">
+        <div class="feature feature-two">
+          <h2 class="feature__title">Team Builder</h2>
+          <p class="feature__desc">Scans our talent network to create the optimal team for your project</p>
+          <img class="feature__img" src="https://kellychi22.github.io/frontend-mentor-solutions/10-four-card-feature-section/images/icon-team-builder.svg" alt="">
+        </div>
+        <div class="feature feature-three">
+          <h2 class="feature__title">Karma</h2>
+          <p class="feature__desc">Regularly evaluates our talent to ensure quality</p>
+          <img class="feature__img" src="https://kellychi22.github.io/frontend-mentor-solutions/10-four-card-feature-section/images/icon-karma.svg" alt="">
+        </div>
+      </div>
+      <div class="feature feature-four">
+        <h2 class="feature__title">Calculator</h2>
+        <p class="feature__desc">Uses data from past projects to provide better delivery estimates</p>
+        <img class="feature__img" src="https://kellychi22.github.io/frontend-mentor-solutions/10-four-card-feature-section/images/icon-calculator.svg" alt="">
+      </div>
+    </div>
 
-  <button type="button" class="slider-nav"></button>
-  <button type="button" class="slider-nav slider-nav-next"></button>
+  </section>
+</main>
 
-  <div class="slider-indicators archSlide">
-    <button class="active">1</button>
-    <button>2</button>
-    <button>3</button>
-    <button>4</button>
-    <button>5</button>
-  </div>
-</div>
+<footer>
+  <p class="attribution">
+    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>.
+    Coded by <a href="#">Kelly CHI</a>.
+  </p>
+</footer>
     
   </body>
   
